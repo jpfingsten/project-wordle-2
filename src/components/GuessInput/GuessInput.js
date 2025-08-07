@@ -12,7 +12,7 @@ function GuessInput() {
         setGuess('');
       }}>
     <label for="guess-input">Enter guess:</label>
-      <input id="guess-input" type="text" maxlength="5" value={guess}  onChange={(event) => {
+      <input id="guess-input" type="text" pattern="[A-Za-z]{5}" title="Please enter a five-letter word" value={guess}  onChange={(event) => {
         const currentGuess = event.target.value.toUpperCase();
         setGuess(currentGuess);
     }} />
