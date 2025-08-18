@@ -1,6 +1,8 @@
 import React from 'react';
 
 function GuessInput({guess, setGuess, guessList, setGuessList}) {
+
+  const [guessesArray, setGuessesArray] = React.useState([]);
   
   return (
   <form className="guess-input-wrapper" onSubmit={(event) => {
@@ -8,7 +10,11 @@ function GuessInput({guess, setGuess, guessList, setGuessList}) {
         if (guess.length < 5) {window.alert('Please submit a 5-letter word.'); return}
         setGuess('');
 
-        const nextGuessList = [...guessList, guess];
+        const nextGuessesArray = [...guessesArray, guess];
+        setGuessesArray(nextGuessesArray);
+
+        const nextGuessList = [...guessList];
+        nextGuessList.splice(0, nextGuessesArray.length, ...nextGuessesArray);
         setGuessList(nextGuessList);
       }}>
     <label htmlFor="guess-input">Enter guess:</label>

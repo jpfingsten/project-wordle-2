@@ -1,6 +1,7 @@
 import React from 'react';
 import GuessInput from '../GuessInput';
 import GuessList from '../GuessList';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
@@ -12,7 +13,7 @@ console.info({ answer });
 
 function Game() {
   const [guess, setGuess] = React.useState("");
-  const [guessList, setGuessList] = React.useState([]);
+  const [guessList, setGuessList] = React.useState(Array(NUM_OF_GUESSES_ALLOWED).fill(''));
 
   return (
     <>
