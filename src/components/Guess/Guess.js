@@ -1,7 +1,10 @@
 import React from 'react';
+import {checkGuess} from '../../game-helpers';
+import {answer} from '../Game';
 
 function Guess({guess}) {
-  const lettersArray = guess.split('');
+
+  const checkedGuess = checkGuess(guess, answer);
 
   return (
     guess === "" ? 
@@ -13,8 +16,8 @@ function Guess({guess}) {
       <span className="cell"></span>
     </p> :
     <p className="guess">
-      {lettersArray.map((letter, index) => {
-        return <span className="cell" key={index}>{letter}</span>
+      {checkedGuess.map((character, index) => {
+        return <span className={`cell ${character.status}`} key={index}>{character.letter}</span>
       })}
     </p>
   );
