@@ -14,11 +14,26 @@ console.info({ answer });
 function Game() {
   const [guess, setGuess] = React.useState("");
   const [guessList, setGuessList] = React.useState(Array(NUM_OF_GUESSES_ALLOWED).fill(''));
+  const [guessesArray, setGuessesArray] = React.useState([]);
+
+  const gameWon = guessesArray[guessesArray.length - 1] === answer ? true : false;
+  const gameEnded = guessesArray.length === NUM_OF_GUESSES_ALLOWED || gameWon;
+  console.log(gameEnded);
 
   return (
     <>
       <GuessList guessList={guessList} setGuessList={setGuessList} />
-      <GuessInput guess={guess} setGuess={setGuess} guessList={guessList} setGuessList={setGuessList}/>
+      <GuessInput guess={guess} setGuess={setGuess} guessList={guessList} setGuessList={setGuessList} guessesArray={guessesArray} setGuessesArray={setGuessesArray} gameEnded={gameEnded}/>
+    
+      {gameEnded &&
+        <div class={`${gameWon ? 'happy' : 'sad'} banner`}>
+          {gameWon ? 
+            <p>
+              <strong>Congratulations!</strong> Got it in <strong>{guessesArray.length} guesses</strong>.
+            </p> :
+            <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>}
+        </div>
+      }
     </>
   );
 }
