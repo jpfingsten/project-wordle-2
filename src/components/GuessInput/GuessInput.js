@@ -15,6 +15,7 @@ function GuessInput({guess, setGuess, guessList, setGuessList}) {
         if (nextGuessesArray.length > 6) {
           window.alert('You cannot make more than 6 guesses!');
           nextGuessesArray.pop();
+          setGuess('');
           return
         }
 
