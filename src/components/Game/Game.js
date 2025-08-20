@@ -8,8 +8,6 @@ import { WORDS } from '../../data';
 
 // Pick a random word on every pageload.
 export const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
 
 function Game() {
   const [guess, setGuess] = React.useState("");
@@ -18,7 +16,6 @@ function Game() {
 
   const gameWon = guessesArray[guessesArray.length - 1] === answer ? true : false;
   const gameEnded = guessesArray.length === NUM_OF_GUESSES_ALLOWED || gameWon;
-  console.log(gameEnded);
 
   return (
     <>
